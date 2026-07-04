@@ -1,0 +1,77 @@
+#EXTM3U
+# ============================================
+# IPTV Player - Channels Playlist
+# ============================================
+# Instructions:
+# 1. Add your channels below following the format
+# 2. group-title: categorizes channels
+# 3. tvg-logo: channel logo URL (optional)
+# 4. tvg-id: unique channel identifier (optional)
+# 5. Supports .m3u8 and .ts streams
+# ============================================
+
+#EXTINF:-1 tvg-id="AlJazeera.qa" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Al_Jazeera_logo.svg/1200px-Al_Jazeera_logo.svg.png" group-title="الأخبار",Al Jazeera
+https://live-hls-web-aja.getaj.net/AJA/index.m3u8
+
+#EXTINF:-1 tvg-id="BBCWorld.uk" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_News_2019.svg/1200px-BBC_News_2019.svg.png" group-title="الأخبار",BBC World News
+https://vs-hls-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_news_channel_mobile/pc_hd_abr_v2.m3u8
+
+#EXTINF:-1 tvg-id="France24.fr" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/France24_logo.svg/1200px-France24_logo.svg.png" group-title="الأخبار",France 24
+https://ythls.armelin.one/channel/UCQfwfsi5VrK8HEJDg5SNg0w.m3u8
+
+#EXTINF:-1 tvg-id="AlArabiya.ae" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Al_Arabiya_logo.svg/1200px-Al_Arabiya_logo.svg.png" group-title="الأخبار",Al Arabiya
+https://live.alarabiya.net/alarabiapublish/alarabiya.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-id="SkyNews.uk" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Sky_News_logo.svg/1200px-Sky_News_logo.svg.png" group-title="الأخبار",Sky News
+https://siloh.pluto.tv/lilo/production/SkyNews/master.m3u8
+
+#EXTINF:-1 tvg-id="NationalGeographic.us" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/National_Geographic_Channel.svg/1200px-National_Geographic_Channel.svg.png" group-title="الوثائقية",National Geographic
+https://raw.githubusercontent.com/Alstruit/adaptive-streams/main/streams/us/PlutoTVNationalGeographic.us.m3u8
+
+#EXTINF:-1 tvg-id="Discovery.us" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Discovery_Channel_logo.svg/1200px-Discovery_Channel_logo.svg.png" group-title="الوثائقية",Discovery Channel
+https://raw.githubusercontent.com/Alstruit/adaptive-streams/main/streams/us/PlutoTVDiscovery.us.m3u8
+
+#EXTINF:-1 tvg-id="AnimalPlanet.us" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Animal_Planet_logo.svg/1200px-Animal_Planet_logo.svg.png" group-title="الوثائقية",Animal Planet
+https://raw.githubusercontent.com/Alstruit/adaptive-streams/main/streams/us/PlutoTVAnimalPlanet.us.m3u8
+
+#EXTINF:-1 tvg-id="BeinSports1.qa" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Bein_sports_logo.svg/1200px-Bein_sports_logo.svg.png" group-title="رياضة",Bein Sports 1
+https://livestream.com/accounts/bein1/events/live.m3u8
+
+#EXTINF:-1 tvg-id="BeinSports2.qa" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Bein_sports_logo.svg/1200px-Bein_sports_logo.svg.png" group-title="رياضة",Bein Sports 2
+https://livestream.com/accounts/bein2/events/live.m3u8
+
+#EXTINF:-1 tvg-id="ESPN.us" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_logo.svg/1200px-ESPN_logo.svg.png" group-title="رياضة",ESPN
+https://raw.githubusercontent.com/Alstruit/adaptive-streams/main/streams/us/PlutoTVESPN.us.m3u8
+
+#EXTINF:-1 tvg-id="CartoonNetwork.us" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Cartoon_Network_2010_logo.svg/1200px-Cartoon_Network_2010_logo.svg.png" group-title="أطفال",Cartoon Network
+https://raw.githubusercontent.com/Alstruit/adaptive-streams/main/streams/us/PlutoTVCartoonNetwork.us.m3u8
+
+#EXTINF:-1 tvg-id="DisneyChannel.us" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Disney_Channel_logo_%282014%29.svg/1200px-Disney_Channel_logo_%282014%29.svg.png" group-title="أطفال",Disney Channel
+https://raw.githubusercontent.com/Alstruit/adaptive-streams/main/streams/us/PlutoTVDisneyChannel.us.m3u8
+
+#EXTINF:-1 tvg-id="Nickelodeon.us" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Nickelodeon_logo.svg/1200px-Nickelodeon_logo.svg.png" group-title="أطفال",Nickelodeon
+https://raw.githubusercontent.com/Alstruit/adaptive-streams/main/streams/us/PlutoTVNickelodeon.us.m3u8
+
+#EXTINF:-1 tvg-id="MBC1.sa" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/MBC1_logo.svg/1200px-MBC1_logo.svg.png" group-title="ترفيه",MBC 1
+https://shls-mbc1na-prod-dub.shahid.net/out/v1/0c3a7e893f8144fa8f62478d4f08e8b5/index.m3u8
+
+#EXTINF:-1 tvg-id="MBC2.sa" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/MBC2_logo.svg/1200px-MBC2_logo.svg.png" group-title="ترفيه",MBC 2
+https://shls-mbc2-prod-dub.shahid.net/out/v1/b4b3a5d1b6f64a8f9d8e7c6b5a4f3e2d/index.m3u8
+
+#EXTINF:-1 tvg-id="MBC3.sa" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/MBC3_logo.svg/1200px-MBC3_logo.svg.png" group-title="أطفال",MBC 3
+https://shls-mbc3-prod-dub.shahid.net/out/v1/c5d9f7e8b6a54f3e9d8c7b6a5f4e3d2c/index.m3u8
+
+#EXTINF:-1 tvg-id="MBC4.sa" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/MBC4_logo.svg/1200px-MBC4_logo.svg.png" group-title="ترفيه",MBC 4
+https://shls-mbc4-prod-dub.shahid.net/out/v1/d6e8f7c9b5a44f3e8d7c6b5a4f3e2d1c/index.m3u8
+
+#EXTINF:-1 tvg-id="RotanaCinema.sa" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Rotana_Cinema_logo.svg/1200px-Rotana_Cinema_logo.svg.png" group-title="سينما",Rotana Cinema
+https://shls-rotanacinema-prod-dub.shahid.net/out/v1/a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7/index.m3u8
+
+#EXTINF:-1 tvg-id="RotanaAflam.sa" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Rotana_Aflam_logo.svg/1200px-Rotana_Aflam_logo.svg.png" group-title="سينما",Rotana Aflam
+https://shls-rotanaaflam-prod-dub.shahid.net/out/v1/b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8/index.m3u8
+
+#EXTINF:-1 tvg-id="TestChannel" group-title="تجريبية",Test Stream (TS)
+https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8
+
+#EXTINF:-1 tvg-id="BigBuckBunny" group-title="تجريبية",Big Buck Bunny
+https://test-streams.mux.dev/test_001/stream.m3u8
