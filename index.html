@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV Player - مشغل القنوات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.0/dist/hls.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-900 text-white overflow-hidden">
+    <div id="app" class="w-full h-screen flex flex-col md:flex-row">
+        <!-- Sidebar: Channel List -->
+        <aside id="sidebar" class="w-full md:w-80 bg-gray-800 border-l border-gray-700 flex flex-col transition-all duration-300 z-20">
+            <div class="p-4 border-b border-gray-700 flex items-center justify-between">
+                <h1 class="text-lg font-bold text-emerald-400 flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    IPTV Player
+                </h1>
+                <button id="toggleSidebar" class="md:hidden text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="p-3 border-b border-gray-700">
+                <div class="relative">
+                    <input id="searchInput" type="text" placeholder="ابحث عن قناة..." 
+                        class="w-full bg-gray-700 text-white px-4 py-2 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 placeholder-gray-400 text-sm">
+                    <svg class="w-5 h-5 text-gray-400 absolute right-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-2 space-y-1" id="channelList">
+                <!-- Channels populated by JS -->
+            </div>
+
+            <div class="p-3 border-t border-gray-700 text-xs text-gray-500 text-center">
+                <span id="channelCount">0</span> قناة متاحة
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col bg-black relative">
+            <!-- Mobile Header -->
+            <div class="md:hidden p-3 bg-gray-800 flex items-center justify-between">
+                <button id="menuBtn" class="text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+                <span class="font-bold text-emerald-400">IPTV Player</span>
+                <div class="w-6"></div>
+            </div>
+
+            <!-- Video Container -->
+            <div class="flex-1 relative bg-black flex items-center justify-center">
+                <video id="videoPlayer" class="w-full h-full max-h-[70vh] md:max-h-none object-contain" controls playsinline></video>
+
+                <!-- Loading Overlay -->
+                <div id="loadingOverlay" class="absolute inset-0 bg-black/80 flex flex-col items-center justify-center hidden">
+                    <div class="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+                    <p class="text-emerald-400 font-medium">جاري التحميل...</p>
+                </div>
+
+                <!-- Error Overlay -->
+                <div id="errorOverlay" class="absolute inset-0 bg-black/90 flex flex-col items-center justify-center hidden">
+                    <svg class="w-16 h-16 text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    <p class="text-red-400 font-medium mb-2">تعذر تشغيل القناة</p>
+                    <p class="text-gray-400 text-sm mb-4">قد تكون القناة غير متاحة حالياً</p>
+                    <button id="retryBtn" class="px-6 py-2 bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors">إعادة المحاولة</button>
+                </div>
+
+                <!-- Placeholder -->
+                <div id="placeholder" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-900">
+                    <svg class="w-24 h-24 text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p class="text-gray-400 text-lg">اختر قناة من القائمة للبدء</p>
+                </div>
+            </div>
+
+            <!-- Channel Info Bar -->
+            <div id="infoBar" class="bg-gray-800 border-t border-gray-700 p-4 hidden">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div id="currentLogo" class="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center text-2xl">📺</div>
+                        <div>
+                            <h2 id="currentTitle" class="font-bold text-white text-lg">اسم القناة</h2>
+                            <p id="currentGroup" class="text-emerald-400 text-sm">المجموعة</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span id="liveBadge" class="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full animate-pulse hidden">LIVE</span>
+                        <button id="prevChannel" class="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors" title="القناة السابقة">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button id="nextChannel" class="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors" title="القناة التالية">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
